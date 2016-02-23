@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      
+      >
+    <h:head>
+        <title>Facelet Title</title>
+       
+        
+    </h:head>
+    <h:body>
+    	<h:form>
+	        Bienvenido a mi app sr./a 
+	        <h:outputText id="us" style="font-size:xx-large" value="#{loginBean.usuario}"/><br/><br/>
+	        
+	        <h2>Seleccione Tema:</h2>
+	        <h:selectOneMenu value="#{bienvenidaBean.temaSeleccionado}">
+	        	<f:selectItem itemValue="0" itemLabel="Todos"/>
+	        	<f:selectItems value="#{bienvenidaBean.temas}" var="t" itemValue="#{t.idtema}" itemLabel="#{t.tema}"/>
+	        	<f:ajax event="change" render="tabla"/>
+	        </h:selectOneMenu>
+	        <br/>
+	        
+        
+       		<h2>Libros:</h2>
+ 
+	        <h:dataTable id="tabla" border="1" var="lib" value="#{bienvenidaBean.libros}">
+	        	
+	        	<h:column>
+	        		<f:facet name="header">Titulo</f:facet>
+	        		<!--  <h:outputText value="#{lib.titulo}"/>-->
+	        		${lib.titulo}
+	        	</h:column>
+	        	<h:column>
+	        		<f:facet name="header">Autor</f:facet>
+	        		<h:outputText value="#{lib.autor}"/>
+	        	</h:column>
+	        	<h:column>
+	        		<f:facet name="header">Precio</f:facet>
+	        		<h:outputText value="#{lib.precio}"/>
+	        	</h:column>
+	        </h:dataTable>
+        </h:form>
+        <h:link value="Inicio" outcome="login"/>
+    </h:body>
+</html>
+
