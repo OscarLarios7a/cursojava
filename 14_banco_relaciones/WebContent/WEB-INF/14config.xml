@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
+	<!-- Datasource -->
+	<bean id="data"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName"
+			value="com.mysql.jdbc.Driver">
+		</property>
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/banco">
+		</property>
+		<property name="username" value="root"></property>
+		<property name="password" value="root"></property>
+	</bean>
+    
+    <!--  Configuración de la capa de persistencia JPA en Spring -->
+	<bean id="entityFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="persistenceUnitName" value="14_banco_PU"/>
+		<property name="dataSource" ref="data"/>
+		<property name="jpaVendorAdapter">
+			<!--  Le indicamos el adapatador, en este caso el de hibernate -->
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+				<!--  Motor de persistencia que vamos a utilizar -->
+				<property name="databasePlatform" value="org.hibernate.dialect.MySQLDialect"/>
+			</bean>
+		</property>	
+	</bean>
+	
+	<!--  Gestion transaccionalidad, se realiza con el objeto JpaTransactionManager -->	
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<!-- Se le da una propiedad al que se le pasa el id de la capa de persistencia-->	
+		<property name="entityManagerFactory" ref="entityFactory"/>
+	</bean>
+	
+	<!-- Permite gestionar las transacciones mediante anotaciones -->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+           
+    <!--  Configuración de la capa modelo -->          
+    <context:annotation-config/>
+    <context:component-scan base-package="modelo.dao,modelo.service"/>
+</beans>
+
