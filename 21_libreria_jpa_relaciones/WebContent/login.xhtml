@@ -6,11 +6,16 @@
       >
     <h:head>
         <title>Facelet Title</title>
+     <style type="text/css">
+ 		 body { 
+ 		 		text-align:center
+ 		 		}
+  	</style>         
     </h:head>
     <h:body>
         <h:form prependId="false">
             Usuario:<h:inputText id="user" value="#{loginBean.usuario}"/><br/>
-            Contraseña:<h:inputSecret id="pwd" value="#{loginBean.password}"/><br/>
+            Contraseña:<h:inputSecret id="pwd" value="#{loginBean.password}"/><br/><br/>
             <h:commandButton value="Entrar" action="#{loginBean.validar()}"/>
             <br/><br/>
             <h:outputText value="#{loginBean.error}"/>

@@ -14,7 +14,7 @@ import entidades.Cliente;
 @Component
 public class DaoClientesImpl implements DaoClientes {
 
-	@PersistenceContext(unitName="20_libreria_PU")
+	@PersistenceContext(unitName="21_libreria_PU")
 	EntityManager em;
 	
 	@Transactional

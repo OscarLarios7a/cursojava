@@ -1,5 +1,6 @@
 package modelo.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +10,11 @@ import org.springframework.transaction.annotation.Transactional;
 import entidades.Cliente;
 import entidades.Libro;
 import entidades.Tema;
+import entidades.Venta;
 import modelo.dao.DaoClientes;
 import modelo.dao.DaoLibros;
 import modelo.dao.DaoTemas;
+import modelo.dao.DaoVentas;
 
 @Component("glibreria")
 public class GestionLibreriaImpl implements GestionLibreria {
@@ -22,6 +25,8 @@ public class GestionLibreriaImpl implements GestionLibreria {
 	DaoLibros dlibros;
 	@Autowired
 	DaoTemas dtemas;
+	@Autowired
+	DaoVentas dventas;
 
 	@Transactional
 	@Override
@@ -57,6 +62,16 @@ public class GestionLibreriaImpl implements GestionLibreria {
 	@Override
 	public List<Libro> recuperarLibros() {
 		return dlibros.recuperarLibros();
+	}
+
+	@Override
+	public List<Venta> recuperarVentasFechas(Date fechaIni, Date fechaFin) {
+		return dventas.recuperarVentasFechas(fechaIni, fechaFin);
+	}
+
+	@Override
+	public List<Venta> recuperarVentas() {
+		return dventas.recuperarVentas();
 	}
 
 }

@@ -2,13 +2,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      
+      xmlns:f="http://xmlns.jcp.org/jsf/core"      
       >
     <h:head>
         <title>Facelet Title</title>
-       
-        
+            <style type="text/css">
+ 		 body { 
+ 		 		text-align:center
+ 		 		}
+ 		 #divTabla { 
+				display: table;
+				margin: 0 auto;	
+ 		 		}
+ 		 		
+  	</style>  
     </h:head>
     <h:body>
     	<h:form>
@@ -21,13 +28,12 @@
 	        	<f:selectItems value="#{bienvenidaBean.temas}" var="t" itemValue="#{t.idTema}" itemLabel="#{t.tema}"/>
 	        	<f:ajax event="change" render="tabla"/>
 	        </h:selectOneMenu>
+	       
 	        <br/>
-	        
-        
+     
        		<h2>Libros:</h2>
- 
-	        <h:dataTable id="tabla" border="1" var="lib" value="#{bienvenidaBean.libros}">
-	        	
+ 			<div id="divTabla">
+	        <h:dataTable id="tabla" border="1" var="lib" value="#{bienvenidaBean.libros}">        	
 	        	<h:column>
 	        		<f:facet name="header">Titulo</f:facet>
 	        		<!--  <h:outputText value="#{lib.titulo}"/>-->
@@ -42,7 +48,10 @@
 	        		<h:outputText value="#{lib.precio}"/>
 	        	</h:column>
 	        </h:dataTable>
-        </h:form>
+	        </div>
+        </h:form>       
+        <br/>
+        <h:link value="Ir a Ventas" outcome="ventas"/><br/><br/>
         <h:link value="Inicio" outcome="login"/>
     </h:body>
 </html>

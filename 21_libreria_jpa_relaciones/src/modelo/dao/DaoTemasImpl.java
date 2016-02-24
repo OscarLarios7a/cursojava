@@ -13,7 +13,7 @@ import entidades.Tema;
 @Component
 public class DaoTemasImpl implements DaoTemas {
 
-	@PersistenceContext(unitName="20_libreria_PU")
+	@PersistenceContext(unitName="21_libreria_PU")
 	EntityManager em;
 	
 	@Override

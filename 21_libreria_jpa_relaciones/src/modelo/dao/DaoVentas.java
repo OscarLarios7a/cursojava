@@ -8,6 +8,6 @@ import entidades.Venta;
 
 public interface DaoVentas {
 
-	List<Venta> recuperarentas();
-	List<Venta> recuperarentasFechas(Date fechaIni,Date fechaFin);
+	List<Venta> recuperarVentas();
+	List<Venta> recuperarVentasFechas(Date fechaIni,Date fechaFin);
 }

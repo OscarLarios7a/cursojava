@@ -9,10 +9,13 @@
 	<!-- Datasource -->
 	<bean id="data"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver">			
+		<property name="driverClassName"
+		    value="org.postgresql.Driver">
+			<!-- value="com.mysql.jdbc.Driver"> -->			
 		</property>
 		<property name="url"
-			value="jdbc:mysql://localhost:3306/libros">		
+				value="jdbc:postgresql://localhost:5432/libros">
+			<!-- value="jdbc:mysql://localhost:3306/libros"> -->		
 		</property>
 		<property name="username" value="root"></property>
 		<property name="password" value="root"></property>
@@ -20,7 +23,7 @@
     
     <!--  Configuración de la capa de persistencia JPA en Spring -->
 	<bean id="entityFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-		<property name="persistenceUnitName" value="20_libreria_PU"/>
+		<property name="persistenceUnitName" value="21_libreria_PU"/>
 		<property name="dataSource" ref="data"/>
 		<property name="jpaVendorAdapter">
 			<!--  Le indicamos el adapatador, en este caso el de hibernate -->
