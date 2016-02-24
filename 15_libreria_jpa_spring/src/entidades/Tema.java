@@ -23,7 +23,7 @@ public class Tema implements Serializable {
 	private String tema;
 
 	//bi-directional many-to-one association to Libro
-	@OneToMany(mappedBy="tema", fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="tema")
 	private List<Libro> libros;
 
 	public Tema() {
