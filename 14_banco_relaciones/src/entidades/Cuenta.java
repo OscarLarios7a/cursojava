@@ -23,7 +23,7 @@ public class Cuenta implements Serializable {
 	private double saldo;
 
 	//bi-directional many-to-one association to Movimiento
-	@OneToMany(mappedBy="cuenta", fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="cuenta", fetch=FetchType.LAZY)
 	private List<Movimiento> movimientos;
 
 	public Cuenta() {
