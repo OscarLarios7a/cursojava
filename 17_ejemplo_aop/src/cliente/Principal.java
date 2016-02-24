@@ -7,7 +7,7 @@ import modelo.GestionCadenas;
 
 public class Principal {
 	public static void main(String[] args) {
-		//Iniciamos Sprng
+		//Iniciamos Spring
 		BeanFactory factory = (BeanFactory) new ClassPathXmlApplicationContext("17config.xml");
 		//Solicitamos una implementación de GestionCadenas
 		GestionCadenas g = (GestionCadenas) factory.getBean("gcadenas");
