@@ -6,7 +6,7 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
 
 	<aop:aspectj-autoproxy/>
-	<bean class="aspectos.ControlCadenas"></bean>
+	<bean class="aspectos.ControlCadenas" scope="prototype"></bean>
 	<bean id="gcadenas" class="modelo.GestionCadenasImpl">
 		<property name="texto" value="Texto de prueba"></property>
 	</bean>
