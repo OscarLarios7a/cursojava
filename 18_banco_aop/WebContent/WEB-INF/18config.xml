@@ -30,6 +30,9 @@
 		</property>	
 	
 	</bean>
+<!-- 	Al estar el bean eb un .jar independiente, se tiene que 
+	instanciar explícitamente con la etiqueta bean-->
+	<bean class="aspectos.ControlBanco"></bean>
 	
 	<!-- gestion transaccionalidad -->
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
@@ -40,7 +43,7 @@
 	<tx:annotation-driven transaction-manager="transactionManager"/>
                      
     <context:annotation-config/>
-    <context:component-scan base-package="modelo.dao,modelo.service,aspectos"/>
+    <context:component-scan base-package="modelo.dao,modelo.service"/>
 
 	<aop:aspectj-autoproxy/>
 </beans>

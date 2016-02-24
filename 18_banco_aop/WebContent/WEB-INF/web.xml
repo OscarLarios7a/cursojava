@@ -3,7 +3,7 @@
   <display-name>13_banco_spring_jpa_profesor</display-name>
   <context-param>
     <param-name>contextConfigLocation</param-name>
-    <param-value>/WEB-INF/13config.xml</param-value>
+    <param-value>/WEB-INF/18config.xml</param-value>
   </context-param>
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>

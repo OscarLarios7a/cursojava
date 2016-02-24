@@ -15,7 +15,7 @@ public class Cuenta implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int numerocuenta;
+	private int numerocuenta; 
 
 	private String nombrecliente;
 
