@@ -25,7 +25,7 @@ public class DaoVentasIml implements DaoVentas {
 
 	@Override
 	public List<Venta> recuperarVentasFechas(Date fechaIni, Date fechaFin) {
-		String jpql = "Select v from Venta v where v.fecha between ? and ?";
+		String jpql = "Select v from Venta v where v.fecha between ?1 and ?2";
 		Query q = em.createQuery(jpql);
 		q.setParameter(1, fechaIni);
 		q.setParameter(2, fechaFin);
