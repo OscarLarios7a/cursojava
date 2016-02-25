@@ -1,4 +1,4 @@
-package dao;
+package modelo.dao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -13,7 +13,7 @@ import entidades.Cuenta;
 @Component
  class DaoCuentasImpl implements DaoCuentas { 
 	
-	@PersistenceContext(unitName="14_banco_PU")
+	@PersistenceContext(unitName="23_banco_PU")
 	EntityManager em;
 	
     @Override

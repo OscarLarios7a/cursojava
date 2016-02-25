@@ -1,4 +1,4 @@
-package dao;
+package modelo.dao;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ import entidades.Movimiento;
  @Component
  class DaoMovimientosImpl implements DaoMovimientos {
 
-	@PersistenceContext(unitName="14_banco_PU")
+	@PersistenceContext(unitName="23_banco_PU")
 	EntityManager em;
 		
 	@Transactional

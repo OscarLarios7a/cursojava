@@ -27,7 +27,7 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Curso_javaee_mañana/04_Librerias/lib_aspecto.jar">
+	<classpathentry kind="lib" path="/Users/lsantosp/Desktop/Eclipse/Librerias/lib_aspecto.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>

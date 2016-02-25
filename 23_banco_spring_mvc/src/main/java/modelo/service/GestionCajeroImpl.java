@@ -1,4 +1,4 @@
-package service;
+package modelo.service;
 
 import java.util.Date;
 import java.util.List;
@@ -9,8 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import entidades.Cuenta;
 import entidades.Movimiento;
-import dao.DaoCuentas;
-import dao.DaoMovimientos;
+import modelo.dao.DaoCuentas;
+import modelo.dao.DaoMovimientos;
 
  @Component("gcajero")
  class GestionCajeroImpl implements GestionCajero {
