@@ -31,11 +31,11 @@
  			<h:dataTable id="tabla" border="1" var="ven" value="#{ventasBean.ventas}">	        	
 	        	<h:column>
 	        		<f:facet name="header">Libro</f:facet>
-	        		<h:outputText value="#{ven.libro.getTitulo()}"/>
+	        		<h:outputText value="#{ven.libro.titulo}"/>
 	        	</h:column>
 	        	<h:column>
 	        		<f:facet name="header">Cliente</f:facet>
-	        		<h:outputText value="#{ven.cliente.getUsuario()}"/>
+	        		<h:outputText value="#{ven.cliente.usuario}"/>
 	        	</h:column>
 	        	<h:column>
 	        		<f:facet name="header">Fecha</f:facet>
