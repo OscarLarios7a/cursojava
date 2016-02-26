@@ -15,12 +15,12 @@
 	<bean id="data"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName"
-			value="org.postgresql.Driver">
-			<!-- value="com.mysql.jdbc.Driver"> -->
+			 value="com.mysql.jdbc.Driver">
+			<!-- value="org.postgresql.Driver"> -->		
 		</property>
 		<property name="url"
-			value="jdbc:postgresql://localhost:5432/banco">
-			<!-- value="jdbc:mysql://localhost:3306/banco"> -->
+		 value="jdbc:mysql://localhost:3306/banco">
+			<!-- value="jdbc:postgresql://localhost:5432/banco">-->
 		</property>
 		<property name="username" value="root"></property>
 		<property name="password" value="root"></property>
