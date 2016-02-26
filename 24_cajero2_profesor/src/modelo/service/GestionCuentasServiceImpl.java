@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -55,7 +56,8 @@ public class GestionCuentasServiceImpl implements GestionCuentasService{
        
         return cuenta.buscarCuentaPorCodigo(codigo);
     }
-
+    
+    @Secured({"ROLE_ADMIN"})
     @Override
     public List<Movimiento> obtenerMovimientos(int codigo) {
         
