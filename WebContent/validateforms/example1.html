@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="index.php" method="post" name="contactform"
+id="contact">
+ 
+<label for="name">Name <span>(required)</span></label>
+<input  tabindex="1" type="text" name="name" id="name" required />
+ 
+<label for="mail">Email <span>(required)</span></label>
+<input  tabindex="2" type="email" name="mail" id="mail" required />
+ 
+<label for="phone">Telephone</label>
+<input tabindex="3" type="number" name="phone" id="phone" />
+ 
+<label for="message">Message</label>
+<textarea tabindex="4" cols="30" rows="10" name="message"
+id="message"></textarea>
+ 
+<button tabindex="5" type="submit" name="submit" id="send">
+Submit</button>
+ 
+</form>
+</body>
+</html>

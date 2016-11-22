@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Secciones</title>
+    <script type="text/javascript" src="dust-full-0.3.0.min.js"></script>
+    <script type="text/javascript">
+        var plantilla = '{#usuarios nombre="pepe"}{nombre}<br/>'
+                       +'{:else}No hay usuarios<br/>{/usuarios}';
+        var compilado = dust.compile(plantilla, "secciones");
+        // Cargar la plantilla en caché
+        dust.loadSource(compilado);
+        // Renderizar
+        function renderizar(){
+            var params = {usuarios:[{nombre:"Oliver"},
+                {nombre:"Clara"},{nombre:"Carlos"}]};
+            // Renderizo con datos
+            dust.render("secciones", params, function(err, html){
+                document.getElementById("capa").innerHTML += html;
+            });
+            // Renderizo sin datos
+            dust.render("secciones", {usuarios:null}, function(err, html){
+                document.getElementById("capa").innerHTML += html;
+            });
+            // Renderizo sin claves
+            dust.render("secciones", {usuarios:{}}, function(err, html){
+                document.getElementById("capa").innerHTML += html;
+            });
+        }
+    </script>
+</head>
+<body onload="renderizar()">
+    <div id="capa"></div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bodies</title>
+    <script type="text/javascript" src="dust-full-0.3.0.min.js"></script>
+    <script type="text/javascript">
+        var plantilla = '{#pedido:productos}<td>{nombre}</td><td>{cantidad}</td><td>{disponible}</td><br/>'
+                       +'{:else}No hay productos<br/>{/pedido}';
+        var compilado = dust.compile(plantilla, "bodies");
+        // Cargar la plantilla en caché
+        dust.loadSource(compilado);
+        // Renderizar
+        function renderizar(){
+            var params = {
+                    productos:[{nombre:"Te",cantidad:23,disponible:true},{nombre:"Coche",cantidad:8,disponible:true},{nombre:"Cafe",cantidad:3,disponible:true}],
+                    //productos:[],
+                pedido: function(chunk, ctx, bodies) {
+                    var items = ctx.current(); // ctx es productos
+                    if (items.length) {
+                        chunk.write("<table border='4'>\n");
+                        chunk.write("<tr><th>NOMBRE</th><th>CANTIDAD</th><th>DISPONIBLE</th></tr>");
+                        for (var i = 0; i < items.length; i++) {
+                            chunk = chunk.write("<tr>")
+                                    // Renderizo el bloque if con el item actual
+                                    .render(bodies.block, ctx.push(items[i]))
+                                    .write("</tr>\n");
+                        }
+                        return chunk.write("</table>");
+                    } else if (bodies['else']) {
+                        return chunk.render(bodies['else'], ctx);
+                    }
+                    return chunk;
+                }
+            };
+            // Renderizo con datos
+            dust.render("bodies", params, function(err, html){
+                document.getElementById("capa").innerHTML += html;
+            });
+
+        }
+    </script>
+</head>
+<body onload="renderizar()">
+    <div id="capa"></div>
+</body>
+</html>

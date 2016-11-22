@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bodies</title>
+    <script type="text/javascript" src="dust-full-0.3.0.min.js"></script>
+    <script type="text/javascript">
+        var plantilla = '{#pedido:productos}{nombre}<br/>'
+                       +'{:else}No hay productos<br/>{/pedido}';
+        var compilado = dust.compile(plantilla, "bodies");
+        // Cargar la plantilla en caché
+        dust.loadSource(compilado);
+        // Renderizar
+        function renderizar(){
+            var params = {
+                productos:[{nombre:"Te"},{nombre:"Coche"},{nombre:"Cafe"}],
+                pedido: function(chunk, ctx, bodies) {
+                    var items = ctx.current(); // ctx es productos
+                    if (items.length) {
+                        chunk.write("<ul>\n");
+                        for (var i = 0; i < items.length; i++) {
+                            chunk = chunk.write("<li>")
+                                    // Renderizo el bloque if con el item actual
+                                    .render(bodies.block, ctx.push(items[i]))
+                                    .write("</li>\n");
+                        }
+                        return chunk.write("</ul>");
+                    } else if (bodies['else']) {
+                        return chunk.render(bodies['else'], ctx);
+                    }
+                    return chunk;
+                }
+            };
+            // Renderizo con datos
+            dust.render("bodies", params, function(err, html){
+                document.getElementById("capa").innerHTML += html;
+            });
+
+        }
+    </script>
+</head>
+<body onload="renderizar()">
+    <div id="capa"></div>
+</body>
+</html>

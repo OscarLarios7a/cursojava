@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contextos</title>
+    <script type="text/template" id="plantilla">
+        <label>{nombre}</label>
+        <input type="button" value="{val}"/>
+    </script>
+    <script type="text/javascript" src="dust-full-0.3.0.min.js"></script>
+    <script type="text/javascript">
+        // Creo una plantilla "saludo"
+        var compilado = dust.compile("Hola {nombre}! {handlerSincrono}{~n}{handlerAsincrono}", "saludo");
+        // Cargar la plantilla en cachÃ©
+        dust.loadSource(compilado);
+        // Creo un contexto base con un helper "saludar"
+        var base = dust.makeBase({
+            handlerSincrono: function(chunk, ctx) {
+                return chunk.write("¿Como andas a tus ")
+                            .write(ctx.get("edad"))
+                            .write(" años?");
+            },
+            handlerAsincrono: function(chunk) {
+                return chunk.map(function(chunk) { // hace un hueco
+                    setTimeout(function() {
+                    	chunk.end("Voy tirando");
+                    }, 1000);
+                    		
+      
+                });
+            }
+        });
+        // Renderizar
+        function renderizar(){
+            // Renderizo sobre el contexto base
+            dust.render("saludo", base.push({nombre: "Manolo",edad:78}),
+                function(err, html) {
+                    document.getElementById("capa").innerHTML += html;
+            });
+        }
+    </script>
+</head>
+<body onload="renderizar()">
+    <div id="capa"></div>
+</body>
+</html>

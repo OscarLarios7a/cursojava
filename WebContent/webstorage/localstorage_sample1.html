@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<div id="result"></div>
+<script>
+if(typeof(Storage)!=="undefined")
+  {
+	localStorage.lastname="Smithers";
+	//localStorage.setItem("lastname","Smithers");
+	// Esto no lo hace porque parece ser palabra registrada
+	localStorage.length="18";
+	alert(localStorage.length);
+	  document.getElementById("result").innerHTML="Last name: " + localStorage.lastname;
+	  //document.getElementById("result").innerHTML="Lenght: " + sessionStorage.length;
+  }
+else
+  {
+  document.getElementById("result").innerHTML="Sorry, your browser does not support web storage...";
+  }
+  
+function onStorageEvent(storageEvent){
+
+    alert("storage event");
+}
+
+window.addEventListener('storage', onStorageEvent, false);
+</script>
+
+</body>
+</html>

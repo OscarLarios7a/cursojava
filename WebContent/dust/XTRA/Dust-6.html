@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Efecto</title>
+    <script type="text/javascript" src="dust-full-0.3.0.min.js"></script>
+    <script type="text/javascript">
+        // Creo una plantilla "interna"
+        var plantilla = '{#stream}{#delay}{.}{/delay}{/stream}';
+        var compilado = dust.compile(plantilla, "efecto");
+        // Cargar la plantilla en caché
+        dust.loadSource(compilado);
+        // Renderizar
+        function renderizar(){
+            function efecto() {
+                var d = 1;
+                return {
+                    stream: function() {
+                        return "Mensaje enviado asincronamente al navegador".split('');
+                    },
+                    delay: function(chunk, context, bodies) {
+                        return chunk.map(function(chunk) {
+                            setTimeout(function() {
+                                chunk.render(bodies.block, context).end();
+                            }, d++ * 150);
+                        });
+                    }
+                }
+            }
+            var capa = document.getElementById("capa");
+            // Disparo el efecto
+            dust.stream("efecto", efecto())
+                .on('data', function(datos){
+                    capa.innerHTML += datos;
+                })
+                .on('end', function(){
+                    capa.innerHTML += "<br/>FINALIZADO";
+                })
+                .on('error', function(err){
+                    capa.innerHTML = err;
+                });
+        }
+    </script>
+</head>
+<body onload="renderizar()">
+    <div id="capa"></div>
+</body>
+</html>

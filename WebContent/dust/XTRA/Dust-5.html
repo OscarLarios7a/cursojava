@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Partials</title>
+    <script type="text/template" id="plantilla">
+        {+Item}
+        <label>{nombre}</label>
+        <input type="button" value="{val}"/>
+        {/Item}
+        {+Mensaje}Bienvenido!{/Mensaje}
+    </script>
+    <script type="text/javascript" src="dust-full-0.3.0.min.js"></script>
+    <script type="text/javascript">
+        // Creo una plantilla "interna"
+        var template = document.getElementById("plantilla").innerHTML;
+        var interna = dust.compile(template, "interna");
+        dust.loadSource(interna);
+        var plantilla = '{>interna/}{<Mensaje}Cambiado!{/Mensaje}';
+        var compilado = dust.compile(plantilla, "partials");
+        // Cargar la plantilla en caché
+        dust.loadSource(compilado);
+        // Renderizar
+        function renderizar(){
+            var params = {nombre:["Te","Coche", "Cafe"]};
+            // Renderizo con datos
+            dust.render("partials", params, function(err, html){
+                document.getElementById("capa").innerHTML += html;
+            });
+
+        }
+    </script>
+</head>
+<body onload="renderizar()">
+    <div id="capa"></div>
+</body>
+</html>
